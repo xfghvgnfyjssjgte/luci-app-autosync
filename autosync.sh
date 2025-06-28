@@ -81,6 +81,26 @@ install_app() {
     chmod +x /usr/bin/realtime_sync.sh
     echo_ok "Permissions set."
 
+    # --- Ensure correct line endings ---
+    echo_info "Ensuring correct line endings for scripts..."
+    if ! command -v dos2unix >/dev/null 2>&1; then
+        echo_warn "dos2unix not found. Attempting to install it..."
+        opkg update && opkg install dos2unix
+        if ! command -v dos2unix >/dev/null 2>&1; then
+            echo_error "Failed to install dos2unix. Please install it manually (opkg install dos2unix). Line ending issues might occur."
+        else
+            echo_ok "dos2unix installed."
+        fi
+    fi
+
+    if command -v dos2unix >/dev/null 2>&1; then
+        dos2unix /etc/init.d/autosync
+        dos2unix /usr/bin/realtime_sync.sh
+        echo_ok "Line endings normalized."
+    else
+        echo_warn "dos2unix not available. Skipping line ending normalization."
+    fi
+
     # --- Final Steps ---
     echo_info "Cleaning LuCI cache..."
     rm -f /tmp/luci-indexcache
