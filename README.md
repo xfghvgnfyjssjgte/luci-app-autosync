@@ -50,9 +50,9 @@ This is the recommended method for devices with `git` installed.
 
 3.  **Clone the repository:**
     ```bash
-    git clone https://github.com/YOUR_USERNAME/luci-app-autosync.git /tmp/luci-app-autosync
+    git clone https://github.com/xfghvgnfyjssjgte/luci-app-autosync.git /tmp/luci-app-autosync
     ```
-    *(Remember to replace `YOUR_USERNAME` with your actual GitHub username)*
+    *(Remember to replace `xfghvgnfyjssjgte` with your actual GitHub username)*
 
 4.  **Run the management script:**
     ```bash
