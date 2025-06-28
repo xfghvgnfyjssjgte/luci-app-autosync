@@ -1,0 +1,2 @@
+# This file contains the default configuration for luci-app-autosync.
+# User-specific configurations are managed by LuCI and stored in /etc/config/autosync on the device.

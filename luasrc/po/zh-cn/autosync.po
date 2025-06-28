@@ -1,0 +1,5 @@
+msgid "AutoSync"
+msgstr "自动同步"
+
+msgid "AutoSync 自动同步"
+msgstr "AutoSync 自动同步"
