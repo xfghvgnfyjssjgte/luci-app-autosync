@@ -54,7 +54,7 @@ chmod +x autosync.sh
 echo_ok "autosync.sh is now executable."
 
 echo_info "Running autosync.sh..."
-echo "1" | sh ./autosync.sh
+sh ./autosync.sh install
 
 echo_info "Script finished."
 exit 0

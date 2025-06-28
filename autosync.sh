@@ -4,6 +4,7 @@
 #        LuCI App for AutoSync - Installation/Uninstallation Script
 # =============================================================================
 #  Run this script from the root of the cloned repository on your OpenWrt device.
+#  Usage: ./autosync.sh [install|uninstall]
 # =============================================================================
 
 # Color codes for output
@@ -42,9 +43,9 @@ install_app() {
             read -p "Do you want to try and install it now via opkg? (y/n): " choice
             case "$choice" in
                 y|Y )
-                    echo_info "Running 'opkg update'...
+                    echo_info "Running 'opkg update'"
                     opkg update
-                    echo_info "Attempting to install '$pkg_name'...
+                    echo_info "Attempting to install '$pkg_name'"
                     opkg install "$pkg_name"
                     if ! command -v "$cmd_name" >/dev/null 2>&1; then
                         echo_error "Failed to install '$pkg_name'. Please install it manually."
@@ -133,8 +134,22 @@ uninstall_app() {
     echo_info "=================================================================="
 }
 
-# --- Main Menu ---
-main_menu() {
+# --- Main Logic ---
+if [ -n "$1" ]; then
+    case "$1" in
+        install)
+            install_app
+            ;;
+        uninstall)
+            uninstall_app
+            ;;
+        *)
+            echo_error "Invalid argument: $1. Usage: ./autosync.sh [install|uninstall]"
+            exit 1
+            ;;
+    esac
+else
+    # --- Main Menu (Interactive) ---
     while true; do
         echo_info "\nLuCI App AutoSync Management Menu"
         echo_info "-----------------------------------"
@@ -151,7 +166,4 @@ main_menu() {
             * ) echo_warn "Invalid choice. Please enter 1, 2, or 3.";;
         esac
     done
-}
-
-# Call the main menu function to start the script
-main_menu
+fi
