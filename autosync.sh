@@ -148,7 +148,7 @@ main_menu() {
             1) install_app; break;;
             2) uninstall_app; break;;
             3) echo_info "Exiting. Goodbye!"; exit 0;;
-            * ) echo_warn "Invalid choice. Please enter 1, 2, or 3.;;
+            * ) echo_warn "Invalid choice. Please enter 1, 2, or 3.";;
         esac
     done
 }
